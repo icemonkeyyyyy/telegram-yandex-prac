@@ -1,7 +1,7 @@
 import telebot
-from config import API_TELEGRAM_TOKEN, chat_id
+from config import API_TELEGRAM_TOKEN
 
-bot = telebot.TeleBot(token=API_TELEGRAM_TOKEN)
+bot = telebot.TeleBot(token=API_TELEGRAM_TOKEN, parse_mode="html")
 
 
 def filter_text(message):
@@ -14,8 +14,7 @@ def start_message(message):
     bot.send_message(
         chat_id=message.from_user.id,
         text=f"Привет, {message.from_user.first_name}! Я бот-визитка.\n\n"
-             f"<i>Ознакомиться с функционалом можно использовав</i> - <b>/help</b>",
-        parse_mode="html"
+             f"<i>Ознакомиться с функционалом можно использовав</i> - <b>/help</b>"
     )
 
 
@@ -28,8 +27,7 @@ def start_message(message):
              f"<b>/help</b> - выводит, что я умею\n"
              f"<b>/about</b> - выводит личную информацию\n\n"
              f"<b>На сообщения <code>привет</code>/<code>пока</code> я буду здороваться/прощаться</b>\n"
-             f"<b>На любые другие сообщения я буду писать, <i>Вы напечатали: (то что ты написал)</i></b>",
-        parse_mode="html"
+             f"<b>На любые другие сообщения я буду писать, <i>Вы напечатали: (то что ты написал)</i></b>"
     )
 
 
@@ -41,7 +39,6 @@ def start_message(message):
              f"Я учусь в 10 классе и на курсе нейросетей от "
              f"<a href='https://practicum.yandex.ru/'><b>Яндекс Практикума</b></a>\n"
              f"Умею писать Telegram ботов, также люблю работать в фотошопе\n",
-        parse_mode="html",
         disable_web_page_preview=True
     )
 
@@ -50,8 +47,8 @@ def start_message(message):
 def hi_message(message):  # Функция для обработки сообщений
     bot.send_message(
         chat_id=message.from_user.id,
-        text=f"Извини, но я не понял, что ты написал(\n<i>Используй <b>/help</b>, чтобы узнать доступные команды</i>",
-        parse_mode="html"
+        text=f"Извини, но я не понял, что ты написал(\n"
+             f"<i>Используй <b>/help</b>, чтобы узнать доступные команды</i>"
     )
 
 
